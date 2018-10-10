@@ -1,0 +1,85 @@
+<app-nav></app-nav>
+<div class="container">
+  <div class="search-container">
+    <h2>
+      Search
+    </h2>
+    <!-- Ne pas oublier d'ajouter l'import du FormsModule dans app.module.ts -->
+    <form (ngSubmit)="onSubmit(search.value, type.value)" id="formSearch">
+      <input type="search" name="searchValue" #search>
+      <select name="type" #type id="selectType">
+        <option *ngFor="let item of typeSearch" [value]="item">{{item}}</option>
+      </select>
+      <input type="submit" id="buttonSearch" value="SEARCH">
+    </form>
+
+    <!-- <div *ngIf="getType() === 'track'">
+      <h2>Track search : </h2>
+      <div *ngFor="let track of track_search">
+        <div class="blockArtist">
+          <span class="card-title"><h2>{{ track.name }}</h2></span>
+          <img [src]="imageUrl(track.album.images)" alt="image" class="images">
+          <div class="content">
+            <p>{{ track.album.name }}</p>
+            <p>{{ track.artists[0].name }}</p>
+            <p>{{ track.track_number }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="getType() === 'artist'">
+      <h2>Artist Search : </h2>
+      <div *ngFor="let artist of artist_search">
+        <div class="blockArtist">
+          <span class="card-title"><h2>{{ artist.name }}</h2></span>
+          <img [src]="imageUrl(artist.images)" alt="image" class="images">
+          <div class="content">
+            <p>Followers : {{ artist.followers.total }}</p>
+            <p>Genre(s) : {{ artist.genres }}</p>
+            <p>Popularité : {{ artist.popularity }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="getType() === 'album'">
+      <h2>Album Search : </h2>
+      <div *ngFor="let album of album_search">
+        <div class="blockArtist">
+          <span class="card-title"><h2>{{ album.name }}</h2></span>
+          <img [src]="imageUrl(album.images)" alt="image" class="images">
+          <div class="content">
+            <p>Nom Artiste : {{ album.artists[0].name }}</p>
+            <p>Type d'album : {{ album.album_type }}</p>
+            <p>Date de sortie : {{ album.release_date }}</p>
+            <p>Nombre de pistes : {{ album.total_tracks }}</p>
+          </div>
+        </div>
+      </div>
+    </div> -->
+
+
+
+
+    <app-home></app-home>
+    <!-- 
+    <app-artist [artist]="artist" *ngFor="let artist of artist_search"></app-artist>
+    <app-track [track]="track" *ngFor="let track of track_search"></app-track>
+    <app-album [album]="album" *ngFor="let album of album_search"></app-album>
+    -->
+
+    <app-artist *ngIf="getType() === 'artist'" [artists]="getValue()"></app-artist>
+    <app-track *ngIf="getType() === 'track'" [tracks]="getValue()"></app-track>
+    <app-album *ngIf="getType() === 'album'" [albums]="getValue()"></app-album>
+
+
+  </div>
+</div>
+<router-outlet></router-outlet>
+
+<!-- 
+<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="js/materialize.min.js"></script>  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+ -->
